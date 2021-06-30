@@ -1,4 +1,4 @@
-import React from 'rect';
+import React from 'react';
 
 const StreamShow = () => {
   return <div>StreamShow</div>;
