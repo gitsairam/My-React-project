@@ -18,8 +18,12 @@ class GoogleAuth extends Component {
         });
     });
   }
-  onAuthChange = () => {
-    this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+  onAuthChange = isSignedIn => {
+    if (isSignedIn) {
+      this.props.signIn();
+    } else {
+      this.props.signOut();
+    }
   };
   onsignInClick() {
     this.auth.signIn();
@@ -51,4 +55,7 @@ class GoogleAuth extends Component {
   }
 }
 
-export default connect()(GoogleAuth);
+export default connect(
+  null,
+  { signIn, signOut }
+)(GoogleAuth);
