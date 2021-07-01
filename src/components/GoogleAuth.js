@@ -18,6 +18,7 @@ class GoogleAuth extends Component {
         });
     });
   }
+
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       this.props.signIn();
@@ -32,9 +33,9 @@ class GoogleAuth extends Component {
     this.auth.signOut();
   }
   renderAuthButton() {
-    if (this.state.isSignedIn === null) {
+    if (this.props.isSignedIn === null) {
       return null;
-    } else if (this.state.isSignedIn) {
+    } else if (this.props.isSignedIn) {
       return (
         <button className="ui red google button" onClick={this.onsignOutClick}>
           <i className="google icon" />
@@ -53,9 +54,12 @@ class GoogleAuth extends Component {
   render() {
     return <div>{this.renderAuthButton()} </div>;
   }
+  mapStateToProps = state => {
+    return { isSignedIn: this.auth.isSignedIn };
+  };
 }
 
 export default connect(
-  null,
+  this.mapStateToProps,
   { signIn, signOut }
 )(GoogleAuth);
