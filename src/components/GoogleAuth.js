@@ -54,12 +54,11 @@ class GoogleAuth extends Component {
   render() {
     return <div>{this.renderAuthButton()} </div>;
   }
-  mapStateToProps = state => {
-    return { isSignedIn: this.auth.isSignedIn };
-  };
 }
-
+const mapStateToProps = state => {
+  return { isSignedIn: state.auth.isSignedIn };
+};
 export default connect(
-  this.mapStateToProps,
+  mapStateToProps,
   { signIn, signOut }
 )(GoogleAuth);
